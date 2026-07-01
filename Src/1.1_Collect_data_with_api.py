@@ -2,7 +2,7 @@ import requests
 import pandas as pd
 import time
 
-def collect_raw_anime_data(total_pages = 200):
+def collect_raw_anime_data(total_pages = 400):
     # This empty list will temporarily hold our clean data rows
     list_anime_record = []
     for page in range(1,total_pages+1):
@@ -19,7 +19,7 @@ def collect_raw_anime_data(total_pages = 200):
 
                         studios = ",".join(studio["name"] for studio in anime["studios"])
                         record = {
-                            "anime_id" : anime['mal_id'],
+                            "anime_id" : anime["mal_id"],
                             "title" : anime["title"],
 
                             "score" : anime["score"],
@@ -35,25 +35,25 @@ def collect_raw_anime_data(total_pages = 200):
                             "status" : anime["status"],
 
                             "genres" : genres_str,
-                            "studios" : studios,
-                            "year" : anime["year"],
+                            "studios" : studios
+                        
                         }
                         list_anime_record.append(record)
                 else :
                     print(f"Failed to get data in page {page}. Error : {response.status_code}")
 
-                time.sleep(1)
+                time.sleep(0.7)
             except requests.exceptions.ConnectionError:
                 print(f"Connection lost on page {page}. Retry after 10 seconds...")
-                time.sleep(10)
+                time.sleep(7)
                 continue
     
 
     df = pd.DataFrame(list_anime_record)
-    df.to_csv("D:\Full projet\Anime_prediction\Data\my_anime_raw_dataset.csv", index=False)
+    df.to_csv("D:\Full projet\Anime_recommendation_system\Data\my_anime_raw_dataset.csv", index=False)
     print("Successfully saved data to 'my_anime_dataset.csv'!")
 
-collect_raw_anime_data(total_pages=200)
+collect_raw_anime_data(total_pages=400)
     
 
 
