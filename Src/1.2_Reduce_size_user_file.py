@@ -21,8 +21,8 @@ for chunk in pd.read_csv(large_file_path, chunksize=chunk_size, usecols=['user_i
         user_counts[user_id] = user_counts.get(user_id, 0) + count
 
 # Filter out high-quality active users (users who rated >= 2000 anime titles)
-active_users = {user_id for user_id, count in user_counts.items() if count >= 4000}
-print(f" Found {len(active_users)} active users (rated >= 4000 anime titles).")
+active_users = {user_id for user_id, count in user_counts.items() if count >= 1000}
+print(f" Found {len(active_users)} active users (rated >= 1000 anime titles).")
 
 
 print("\n STEP 2: Filtering and appending data to the output file...")

@@ -30,7 +30,6 @@ def collect_raw_anime_data(total_pages = 400):
 
                             "episodes" : anime["episodes"],
                             "type" : anime["type"],
-                            "rating" : anime["rating"],
                             "duration" : anime["duration"],
                             "status" : anime["status"],
 
