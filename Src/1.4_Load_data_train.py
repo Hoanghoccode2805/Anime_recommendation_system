@@ -31,21 +31,16 @@ def load_merged_data_from_sql():
         a.studios   
     FROM user_ratings r JOIN anime_data a ON (r.anime_id = a.anime_id)
     """
-    chunk_size = 1000000
-    chunks = []
+    first_chunk = True
+
+    for chunk in pd.read_sql(query, con=engine, chunksize=1000000):
+        chunk.to_csv(
+            r"D:\Full projet\Anime_recommendation_system\Data\full_raw_data.csv",
+            mode="w" if first_chunk else "a",
+            header=first_chunk,
+            index=False
+        )
+        first_chunk = False
+        print(f"Saved {len(chunk):,} rows")
     
-    for chunk in pd.read_sql(query, con=engine, chunksize=chunk_size):
-        chunks.append(chunk)
-        print(f"   -> Loaded chunk {len(chunks)} ({len(chunk):,} rows fetched)")
-        
-    # Gộp các khối lại thành một DataFrame duy nhất nếu RAM máy bạn còn đủ chứa
-    df_merged = pd.concat(chunks, ignore_index=True)
-    print(f" Successfully loaded dataset. Total records fetched: {len(df_merged):,}")
-    return df_merged  
-    
-if __name__ == "__main__":
-    df_train = load_merged_data_from_sql()
-    print(df_train.head())
-    print(df_train.info())
-    df_train.to_csv("D:\Full projet\Anime_recommendation_system\Data\full_raw_data.csv", index=False)
-    print("Successfully saved data to 'full_raw_data.csv'!")
+load_merged_data_from_sql()
