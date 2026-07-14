@@ -93,7 +93,7 @@ for anime_id, pred_rating in recs:
     print(f"{title} (id = {anime_id}) (genres = {genres}) → predicted rating: {pred_rating:.2f}")
     
 # Calcul precision and recall of this system
-precisions, recalls = precision_recall_at_k(predictions, k=10, threshold=7)
+precisions, recalls = precision_recall_at_k(predictions, k=10, threshold=9)
 
 avg_precision = sum(prec for prec in precisions.values()) / len(precisions)
 avg_recall = sum(rec for rec in recalls.values()) / len(recalls)
