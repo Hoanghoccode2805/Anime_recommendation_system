@@ -1,13 +1,9 @@
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import StandardScaler,LabelEncoder
 from surprise import Dataset, Reader
 from surprise.model_selection import train_test_split
-from surprise import SVD
-from surprise import accuracy
-from tqdm import tqdm
 
-# A. Load and Prepare the Data
+
 # Load the dataset
 address = r"D:\Full projet\Anime_recommendation_system\Data\full_raw_data.csv"
 df_raw = pd.read_csv(address)

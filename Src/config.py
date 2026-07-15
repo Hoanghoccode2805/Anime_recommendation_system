@@ -13,15 +13,12 @@ MODEL_PATH = os.path.join(MODEL_DIR, "svd_model.pkl")
 MIN_USER_RATINGS = 5        # drop users with fewer than this many ratings
 MIN_ANIME_RATINGS = 5       # drop anime with fewer than this many ratings
 MIN_RATING_STD = 0.5        # drop users whose rating std is below this
-                             # (they rate almost everything the same value,
-                             #  e.g. always ~7 — no discriminating signal for SGD)
-EXCLUDED_TYPES = ["PV", "CM"]   # trailers / ads — not real anime to recommend
- 
+                
 # Evaluation
 RATING_SCALE = (1, 10)
 THRESHOLD = 9        # rating >= this counts as "user actually likes it"
 TOP_K = 10            # K for Precision@K / Recall@K
-TEST_SIZE = 0.25
+TEST_SIZE = 0.20
 RANDOM_STATE = 42
  
 # Model hyperparameters (SVD)
