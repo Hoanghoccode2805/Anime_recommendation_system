@@ -22,6 +22,11 @@ with st.spinner("Load model and data..."):
 
 user_id = st.number_input("Enter User ID", min_value=1, step=1)
 if st.button('Recommend'):
+    known_user_ids = set(df["user_id"].unique())
+    if user_id not in known_user_ids:
+        st.warning("This UserID does not have a review history in the system")
+        st.stop()
+
     with st.spinner("Taking suggestions ..."):
         recs = get_recommendations(model, df, userid=user_id, n=5)
         for anime_id, pred_rating in recs:

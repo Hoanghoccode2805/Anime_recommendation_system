@@ -11,7 +11,7 @@ def collect_raw_anime_data(total_pages = 400):
 
             url = f"https://api.jikan.moe/v4/top/anime?page={page}"
             try: 
-                response = requests.get(url)
+                response = requests.get(url, timeout = 30)
                 if response.status_code == 200 :
                     data = response.json()
                     for anime in data['data']:
@@ -39,13 +39,20 @@ def collect_raw_anime_data(total_pages = 400):
                         
                         }
                         list_anime_record.append(record)
+
+                elif response.status_code == 429:
+                    print("Rate limit reached. Waiting 5 seconds...")
+                    time.sleep(5)
+                    continue
+                     
                 else :
                     print(f"Failed to get data in page {page}. Error : {response.status_code}")
 
                 time.sleep(0.7)
-            except requests.exceptions.ConnectionError:
-                print(f"Connection lost on page {page}. Retry after 10 seconds...")
-                time.sleep(7)
+
+            except requests.exceptions.RequestException as error:
+                print(f"Request failed on page {page}: {error}")
+                time.sleep(5)
                 continue
     
 

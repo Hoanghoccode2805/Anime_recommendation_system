@@ -1,10 +1,9 @@
-import os
 import pickle
 import pandas as pd
 from surprise import Dataset, Reader, SVD, BaselineOnly, accuracy
 from surprise.model_selection import train_test_split
 import config 
-from config import MODEL_PATH, RATING_SCALE, CLEANED_DATA_PATH, SVD_PARAMS, RANDOM_STATE
+from config import MODEL_PATH, RATING_SCALE, CLEANED_DATA_PATH, SVD_PARAMS, RANDOM_STATE, MODEL_DIR
 
 def load_cleaned_data():
     return pd.read_csv(CLEANED_DATA_PATH)
@@ -34,9 +33,13 @@ if __name__ == "__main__":
     predictions = model.test(testset)
     print("RMSE of SVD is : ")
     accuracy.rmse(predictions)
+
+    #Use all the data for the model in the app.py
+    full_trainset = data.build_full_trainset()
+    final_model = train_SVD(full_trainset)
     
-    os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
+    MODEL_DIR.mkdir(parents=True, exist_ok=True)
     with open(MODEL_PATH, "wb") as f:
-        pickle.dump(model, f)
+        pickle.dump(final_model, f)
     print(f"Model saved to {MODEL_PATH}")
 

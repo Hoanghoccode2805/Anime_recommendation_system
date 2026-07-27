@@ -6,6 +6,19 @@ def load_data():
     df = pd.read_csv(RAW_DATA_PATH)
     print(f"Loaded {len(df)} rows, {df['user_id'].nunique()} users, {df['anime_id'].nunique()} anime")
     return df
+
+def validate_data(df):
+    required_columns = {"user_id", "anime_id", "rating"}
+    missing_columns = required_columns - set(df.columns)
+
+    if missing_columns:
+        raise ValueError(f"Missing columns: {missing_columns}")
+
+    df = df.dropna(subset=["user_id", "anime_id", "rating"]).copy()
+    df["rating"] = pd.to_numeric(df["rating"], errors="coerce")
+    df = df.dropna(subset=["rating"])
+    df = df[df["rating"].between(1, 10)]
+    return df
  
  
 def remove_duplicates(df):
@@ -51,6 +64,7 @@ def filter_sparsity(df):
  
 if __name__ == "__main__":
     df = load_data()
+    df = validate_data(df)
     df = remove_duplicates(df)
     save_anime_metadata(df)
     df = remove_low_variance_users(df)
