@@ -1,0 +1,3 @@
+Data/*.csv
+.env
+models/svd_model.pkl
