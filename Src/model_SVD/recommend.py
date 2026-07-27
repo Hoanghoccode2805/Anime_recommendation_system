@@ -2,7 +2,7 @@ import pickle
 import pandas as pd
 import config
 from config import ANIME_METADATA_PATH, MODEL_PATH
-from train_model import load_cleaned_data
+from Src.model_SVD.train_model import load_cleaned_data
 from tqdm import tqdm
  
 def load_model():

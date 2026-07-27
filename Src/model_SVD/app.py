@@ -1,14 +1,13 @@
 import streamlit as st
-import joblib
 from config import MODEL_PATH
-from recommend import load_model, load_anime_metadata, get_recommendations
-from train_model import load_cleaned_data
+from Src.model_SVD.recommend import load_model, load_anime_metadata, get_recommendations
+from Src.model_SVD.train_model import load_cleaned_data
 
 st.title("Anime Recommendation System")
 
 @st.cache_resource
 def get_model():
-    model = joblib.load(MODEL_PATH)
+    model = load_model()
     return model
 
 @st.cache_data

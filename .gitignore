@@ -1,3 +1,6 @@
-Data/*.csv
+__pycache__/
+*.py[cod]
+.venv/
 .env
-models/svd_model.pkl
+Data/*.csv
+models/*.pkl

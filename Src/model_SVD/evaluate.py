@@ -40,7 +40,7 @@ def average_precision_recall(predictions, k=10, threshold=9):
  
 if __name__ == "__main__":
     from surprise.model_selection import train_test_split
-    from train_model import load_cleaned_data, build_dataset, train_SVD
+    from Src.model_SVD.train_model import load_cleaned_data, build_dataset, train_SVD
  
     df = load_cleaned_data()
     data = build_dataset(df)

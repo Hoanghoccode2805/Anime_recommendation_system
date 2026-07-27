@@ -90,7 +90,7 @@ if __name__ == "__main__":
 
     # OPTIMIZED DATA UPLOAD USING CHUNKING
     chunk_size = 500000
-    total_chunks = (len(df_rating) // chunk_size) + 1
+    total_chunks = (len(df_rating) + chunk_size - 1) // chunk_size
     print(f"\n Uploading {len(df_rating):,} rows to PostgreSQL in {total_chunks} chunks ")
 
     # Upload User Ratings to PostgreSQL

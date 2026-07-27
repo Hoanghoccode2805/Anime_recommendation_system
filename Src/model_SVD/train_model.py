@@ -36,7 +36,7 @@ if __name__ == "__main__":
     accuracy.rmse(predictions)
     
     os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
-    with open(config.MODEL_PATH, "wb") as f:
+    with open(MODEL_PATH, "wb") as f:
         pickle.dump(model, f)
     print(f"Model saved to {MODEL_PATH}")
 

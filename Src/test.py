@@ -2,10 +2,10 @@ import pandas as pd
 import numpy as np
 from surprise import Dataset, Reader
 from surprise.model_selection import train_test_split
-
+from config import RAW_DATA_PATH
 
 # Load the dataset
-address = r"D:\Full projet\Anime_recommendation_system\Data\full_raw_data.csv"
+address = RAW_DATA_PATH
 df_raw = pd.read_csv(address)
 
 # Define the reader

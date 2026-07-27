@@ -1,5 +1,4 @@
 import pandas as pd
-import os
 from config import RATING_COMPLETE_PATH, USER_RATING_SMALL_PATH
 
 if __name__ == "__main__":
