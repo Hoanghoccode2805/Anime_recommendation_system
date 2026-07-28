@@ -3,4 +3,4 @@ __pycache__/
 .venv/
 .env
 Data/*.csv
-models/*.pkl
+models/svd_model.pkl
