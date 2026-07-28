@@ -2,5 +2,7 @@ __pycache__/
 *.py[cod]
 .venv/
 .env
-Data/*.csv
+Data/*.csv 
+!Data/demo_cleaned_data.csv
+!Data/anime_metadata_unique.csv
 models/svd_model.pkl
