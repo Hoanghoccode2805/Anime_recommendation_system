@@ -8,6 +8,9 @@ def reduce_user_ratings(
     chunk_size=500_000,
     min_ratings=1000,
 ):
+    if output_file_path.exists():
+        output_file_path.unlink()
+        
     print("STEP 1: Scanning the file to count ratings per user...")
 
     # Dictionary to keep track of the frequency of each user_id
