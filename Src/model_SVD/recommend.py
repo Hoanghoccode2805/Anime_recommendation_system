@@ -1,14 +1,17 @@
 import pickle
 import pandas as pd
 import config
-from config import ANIME_METADATA_PATH, MODEL_PATH
+from config import ANIME_METADATA_PATH, MODEL_PATH, DEMO_MODEL_PATH
 from Src.model_SVD.train_model import load_cleaned_data
 from tqdm import tqdm
  
 def load_model():
     with open(MODEL_PATH, "rb") as f:
         return pickle.load(f)
- 
+
+def load_demo_model():
+    with open(DEMO_MODEL_PATH, "rb") as f:
+        return pickle.load(f)
  
 def load_anime_metadata():
     return pd.read_csv(ANIME_METADATA_PATH)

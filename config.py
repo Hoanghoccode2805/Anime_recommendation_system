@@ -8,10 +8,12 @@ RAW_DATA_PATH = DATA_DIR / "full_raw_data.csv"
 RATING_COMPLETE_PATH = DATA_DIR / "rating_complete.csv"
 USER_RATING_SMALL_PATH = DATA_DIR / "user_rating_small.csv"
 CLEANED_DATA_PATH = DATA_DIR / "cleaned_data.csv"
+DEMO_CLEANED_DATA_PATH = DATA_DIR / "demo_cleaned_data.csv"
 ANIME_METADATA_PATH = DATA_DIR / "anime_metadata_unique.csv"
- 
+
 MODEL_DIR = BASE_DIR / "models"
 MODEL_PATH = MODEL_DIR/ "svd_model.pkl"
+DEMO_MODEL_PATH = MODEL_DIR/ "demo_svd_model.pkl"
  
 # Data cleaning thresholds
 MIN_USER_RATINGS = 5        # drop users with fewer than this many ratings

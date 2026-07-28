@@ -3,7 +3,7 @@ import pandas as pd
 from surprise import Dataset, Reader, SVD, BaselineOnly, accuracy
 from surprise.model_selection import train_test_split
 import config 
-from config import MODEL_PATH, RATING_SCALE, CLEANED_DATA_PATH, SVD_PARAMS, RANDOM_STATE, MODEL_DIR
+from config import MODEL_PATH, RATING_SCALE, CLEANED_DATA_PATH, SVD_PARAMS, RANDOM_STATE, MODEL_DIR, TEST_SIZE
 
 def load_cleaned_data():
     return pd.read_csv(CLEANED_DATA_PATH)
@@ -20,7 +20,7 @@ def train_SVD(trainset):
 if __name__ == "__main__":
     df = load_cleaned_data()
     data = build_dataset(df)
-    trainset, testset = train_test_split(data, test_size= config.TEST_SIZE, random_state= RANDOM_STATE)
+    trainset, testset = train_test_split(data, test_size= TEST_SIZE, random_state= RANDOM_STATE)
     
     # simple baseline (global mean + user/item bias, no latent factors)
     # so the SVD's RMSE has something to be compared against
