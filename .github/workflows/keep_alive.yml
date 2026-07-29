@@ -1,0 +1,15 @@
+name: Keep Streamlit App Alive
+
+on:
+  schedule:
+    # Runs every 10 hours
+    - cron: '0 */10 * * *'
+  workflow_dispatch: # Allows manual trigger from the GitHub Actions tab
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Ping Request to Streamlit App
+        run: |
+          curl -sS https://animerecommendationsystem-hoanglearnai.streamlit.app/ > /dev/null
